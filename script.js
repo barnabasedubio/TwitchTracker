@@ -1,5 +1,14 @@
+// create stream object
+var Stream = function() {
+    this.streamerName = "";
+    this.game = "";
+    this.viewers = 0;
+    this.online = false;
+    this.streamURL = "";
+};
+
 var listOfStreamers =
-    ["summit1g", "lirik", "cohhcarnage",
+    ["summit1g", "lirik", "CohhCarnage",
     "freecodecamp", "imaqtpie", "rocketleague",
     "shlorox", "noobs2ninjas", "drunkdevs"];
 
@@ -19,5 +28,5 @@ $(document).ready(function () {
 });
 
 function getStreamData() {
-    
+
 }
