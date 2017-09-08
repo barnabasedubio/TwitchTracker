@@ -6,27 +6,52 @@ var Stream = function() {
     this.online = false;
     this.streamURL = "";
 };
+// streamer variables for their Stream object
+var summit1g = new Stream();
+var lirik = new Stream();
+var cohhcarnage = new Stream();
+var freecodecamp = new Stream();
+var imaqtipe = new Stream();
+var rocketleague = new Stream();
+var omatum_greg = new Stream();
+var noobs2ninjas = new Stream();
+var drunkdevs = new Stream();
 
-var listOfStreamers =
-    ["summit1g", "lirik", "CohhCarnage",
-    "freecodecamp", "imaqtpie", "rocketleague",
-    "shlorox", "noobs2ninjas", "drunkdevs"];
-
-var streamernames = [];
+// don't forget - js arrays are c-b-r, so this works
+var streamerList = [summit1g, lirik, cohhcarnage,
+                    freecodecamp, imaqtipe, rocketleague,
+                    omatum_greg, noobs2ninjas, drunkdevs];
+// used for the Stream.streamerName value and for apiURL
+var streamerNames = ["summit1g", "LIRIK", "CohhCarnage",
+                     "imaqtpie", "FreeCodeCamp", "RocketLeague",
+                     "Omatum_Greg", "noobs2ninjas", "drunkdevs"];
+// set the corresponding streamer names
+for (var i = 0; i < streamerList.length; i++) {
+    streamerList[i].streamerName = streamerNames[i];
+}
 
 var apiURL = "https://wind-bow.glitch.me/twitch-api/streams/";
-var streamData;
-var testURL = apiURL + "lirik";
 
 $(document).ready(function () {
-    console.log("url: " + testURL);
-    $.getJSON(testURL, function (data) {
-        //console.log(data);
-        lirik = data;
-        console.log(lirik.stream.game);
-    });
+    getStreamData();
 });
 
+/*
+Iterate over streamerNames list and append the name to the API url.
+get the JSON-data for every name and fill in the variables of each stream object.
+ */
 function getStreamData() {
-
+    for (var i = 0; i < streamerList.length; i++) {
+        (function (i) {
+            var streamerApiURL = apiURL + streamerNames[i];
+            $.getJSON(streamerApiURL, function(data) {
+                if (data.stream !== null) { // streamer is online, so populate metadata
+                    streamerList[i].game = data.stream.game;
+                    streamerList[i].online = true;
+                    streamerList[i].viewers = data.stream.viewers;
+                    console.log(streamerList[i].streamerName + ", " + streamerList[i].game + ", " + streamerList[i].viewers);
+                }
+            });
+        })(i);
+    }
 }
