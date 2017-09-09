@@ -45,11 +45,11 @@ function getStreamData() {
         (function (i) {
             var streamerApiURL = apiURL + streamerNames[i];
             $.getJSON(streamerApiURL, function(data) {
+                streamerList[i].streamURL = "https://twitch.tv/" + streamerNames[i];
                 if (data.stream !== null) { // streamer is online, so populate metadata
                     streamerList[i].game = data.stream.game;
                     streamerList[i].online = true;
                     streamerList[i].viewers = data.stream.viewers;
-                    streamerList[i].streamURL = data.stream.channel.url;
                     console.log(streamerList[i].streamerName + ", " +
                         streamerList[i].game + ", " +
                         streamerList[i].viewers + ", " +
