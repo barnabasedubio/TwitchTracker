@@ -33,7 +33,7 @@ for (var i = 0; i < streamerList.length; i++) {
 var apiURL = "https://wind-bow.glitch.me/twitch-api/streams/";
 
 $(document).ready(function () {
-    if (getStreamData()) {
+    if (getStreamData()) { // when process is done (have to wait since ajax is asynchronous)
         // TODO
     }
 });
