@@ -67,25 +67,39 @@ function populateAndRender(index) {
     var html = "";
     if (streamerList[index].online) {
         html += "<div class='col-sm-12 col-md-4'>" +
-                    "<div class='stream-box'>" +
+                    "<a class='stream-link' href="+ streamerList[index].streamURL +" target='_blank'><div class='stream-box'>" +
                         "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
                         "<h5 class='stream-box-status text-center'>" + streamerList[index].game + "</h5>" +
                         "<div class='stream-info'>" +
                             "<div class='live-icon live-icon-online'></div>" +
                             "<h6>" + streamerList[index].viewers + " watching </h6>" +
                         "</div>" +
-                    "</div>" +
+                    "</div></a>" +
                 "</div>";
     } else {
         html += "<div class='col-sm-12 col-md-4'>" +
-                    "<div class='stream-box'>" +
+                    "<a class='stream-link' href="+ streamerList[index].streamURL +" target='_blank'><div class='stream-box'>" +
                         "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
                         "<h5 class='stream-box-status text-center'>Offline</h5>" +
                         "<div class='stream-info'>" +
                             "<div class='live-icon live-icon-offline'></div>" +
                         "</div>" +
-                    "</div>" +
+                    "</div></a>" +
                 "</div>";
     }
     $("#list_of_streams").append(html);
+    // create hover animations for the newly added stream-box
+    $(".stream-box").hover(function() {
+        // entering the area
+        $(this).css({
+            "background-color": "rgba(12, 12, 12, 0.3)"
+        }, 100);
+
+    }, function () {
+        // leaving the area
+        $(this).css({
+            "background-color": "inherit"
+        }, 100);
+    });
+    $(".stream-link").css({"text-decoration":"none"});
 }
