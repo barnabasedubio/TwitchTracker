@@ -1,4 +1,37 @@
+html {
+    height: 100%;
+}
 body {
-    background: url("http://res.cloudinary.com/detqxj5bf/image/upload/v1504822157/Twitcher/4K-Purple-Image.jpg") no-repeat center center fixed;
-    background-size: cover;
+    height: inherit;
+    background: linear-gradient(to bottom right, #4f017f, #8900dd);
+}
+
+h1, h2, h3, h4, h5, h6, p, .footer-text a, .footer-text a:hover {
+    font-family: Harrington, serif;
+    color: #D4AF37;
+    text-shadow: 0.1rem 0.1rem 0.1rem #000;
+}
+
+.container {
+    position: relative;
+    top: 8rem;
+}
+.content-box {
+    margin-top: 3rem;
+}
+.stream-box {
+    border: 0.2rem solid #D4AF37;
+    background-color: transparent;
+    border-radius: 3rem;
+    min-height:6rem;
+    margin-bottom: 2rem;
+    /*box-shadow: 0.1rem 0.1rem 0.1rem black;*/
+    box-shadow: inset 0.1rem 0.1rem 0.1rem black, 0.1rem 0.1rem 0.1rem black;
+}
+footer {
+    margin-top: 11em;
+}
+
+.footer-text a:hover{
+    text-decoration: none;
 }

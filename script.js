@@ -19,7 +19,7 @@ var drunkdevs = new Stream();
 
 // don't forget - js arrays are c-b-r, so this works
 var streamerList = [summit1g, lirik, cohhcarnage,
-                    freecodecamp, imaqtipe, rocketleague,
+                    imaqtipe, freecodecamp, rocketleague,
                     omatum_greg, noobs2ninjas, drunkdevs];
 // used for the Stream.streamerName value and for apiURL
 var streamerNames = ["summit1g", "LIRIK", "CohhCarnage",
@@ -33,7 +33,9 @@ for (var i = 0; i < streamerList.length; i++) {
 var apiURL = "https://wind-bow.glitch.me/twitch-api/streams/";
 
 $(document).ready(function () {
-    getStreamData();
+    if (getStreamData()) {
+        // TODO
+    }
 });
 
 /*
@@ -49,9 +51,14 @@ function getStreamData() {
                     streamerList[i].game = data.stream.game;
                     streamerList[i].online = true;
                     streamerList[i].viewers = data.stream.viewers;
-                    console.log(streamerList[i].streamerName + ", " + streamerList[i].game + ", " + streamerList[i].viewers);
+                    streamerList[i].streamURL = data.stream.channel.url;
+                    console.log(streamerList[i].streamerName + ", " +
+                        streamerList[i].game + ", " +
+                        streamerList[i].viewers + ", " +
+                        streamerList[i].streamURL);
                 }
             });
         })(i);
     }
+    return true; // in order to check if function is finished
 }
