@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6, p, .footer-text a, .footer-text a:hover {
     text-shadow: 0.1rem 0.1rem 0.1rem #000;
 }
 
+h5 {
+    font-size: 1rem;
+}
+
 .container {
     position: relative;
     top: 8rem;

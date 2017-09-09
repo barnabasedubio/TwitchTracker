@@ -33,9 +33,7 @@ for (var i = 0; i < streamerList.length; i++) {
 var apiURL = "https://wind-bow.glitch.me/twitch-api/streams/";
 
 $(document).ready(function () {
-    if (getStreamData()) { // when process is done (have to wait since ajax is asynchronous)
-        // TODO
-    }
+    getStreamData();
 });
 
 /*
@@ -57,8 +55,37 @@ function getStreamData() {
                         streamerList[i].viewers + ", " +
                         streamerList[i].streamURL);
                 }
+            }).done(function () {
+                populateAndRender(i);
             });
         })(i);
     }
-    return true; // in order to check if function is finished
+    return true;
+}
+
+function populateAndRender(index) {
+    var html = "";
+    if (streamerList[index].online) {
+        html += "<div class='col-sm-12 col-md-4'>" +
+                    "<div class='stream-box'>" +
+                        "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
+                        "<h5 class='stream-box-status text-center'>" + streamerList[index].game + "</h5>" +
+                        "<div class='stream-info'>" +
+                            "<div class='live-icon live-icon-online'></div>" +
+                            "<h6>" + streamerList[index].viewers + " watching </h6>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+    } else {
+        html += "<div class='col-sm-12 col-md-4'>" +
+                    "<div class='stream-box'>" +
+                        "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
+                        "<h5 class='stream-box-status text-center'>Offline</h5>" +
+                        "<div class='stream-info'>" +
+                            "<div class='live-icon live-icon-offline'></div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+    }
+    $("#list_of_streams").append(html);
 }
