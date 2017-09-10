@@ -66,7 +66,7 @@ function getStreamData() {
 function populateAndRender(index) {
     var html = "";
     if (streamerList[index].online) {
-        html += "<div class='col-sm-12 col-md-4'>" +
+        html += "<div class='col-md-12 col-lg-4'>" +
                     "<a class='stream-link' href="+ streamerList[index].streamURL +" target='_blank'><div class='stream-box'>" +
                         "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
                         "<h5 class='stream-box-status text-center'>" + streamerList[index].game + "</h5>" +
@@ -77,7 +77,7 @@ function populateAndRender(index) {
                     "</div></a>" +
                 "</div>";
     } else {
-        html += "<div class='col-sm-12 col-md-4'>" +
+        html += "<div class='col-md-12 col-lg-4'>" +
                     "<a class='stream-link' href="+ streamerList[index].streamURL +" target='_blank'><div class='stream-box'>" +
                         "<h4 class='stream-box-streamer text-center'>" + streamerList[index].streamerName + "</h4>" +
                         "<h5 class='stream-box-status text-center'>Offline</h5>" +
@@ -87,7 +87,12 @@ function populateAndRender(index) {
                     "</div></a>" +
                 "</div>";
     }
-    $("#list_of_streams").append(html);
+    if (index <= 2) {
+        $("#list_of_streams-1").append(html);
+    } else if (index <= 5) {
+        $("#list_of_streams-2").append(html);
+    } else $("#list_of_streams-3").append(html);
+
     // create hover animations for the newly added stream-box
     $(".stream-box").hover(function() {
         // entering the area
